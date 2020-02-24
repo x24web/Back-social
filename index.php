@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content=""/>
+  <meta name="keyword" content=""/>
+  <link rel="icon" href=""/>
+
   <link href="https://fonts.googleapis.com/css?family=Almarai:400,800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet">
-  <link href="css/owl.carousel.min.css" rel="stylesheet">
-  <link href="css/owl.theme.default.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/animate.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="<?php bloginfo('template_url'); ?>/css/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?php bloginfo('template_url'); ?>/css/owl.theme.default.min.css" rel="stylesheet">
+  <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php bloginfo('template_url'); ?>/css/animate.css" rel="stylesheet">
+  <link href="<?php bloginfo('template_url'); ?>/css/style.css" rel="stylesheet">
+  <link href="<?php bloginfo('template_url'); ?>/css/rtl.css" rel="stylesheet">
   <title>La vénus Marking Agency</title>
 </head>
 <body>
@@ -43,6 +48,11 @@
     </div>
   </nav>
   <!-- End Navbar -->
+
+
+
+
+
   <!-- Start Carousel -->
   <div id="carouselhead" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
