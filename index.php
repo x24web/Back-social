@@ -1,58 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content=""/>
-  <meta name="keyword" content=""/>
-  <link rel="icon" href=""/>
-
-  <link href="https://fonts.googleapis.com/css?family=Almarai:400,800&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet">
-  <link href="<?php bloginfo('template_url'); ?>/css/owl.carousel.min.css" rel="stylesheet">
-  <link href="<?php bloginfo('template_url'); ?>/css/owl.theme.default.min.css" rel="stylesheet">
-  <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?php bloginfo('template_url'); ?>/css/animate.css" rel="stylesheet">
-  <link href="<?php bloginfo('template_url'); ?>/css/style.css" rel="stylesheet">
-  <link href="<?php bloginfo('template_url'); ?>/css/rtl.css" rel="stylesheet">
-  <title>La vénus Marking Agency</title>
-</head>
-<body>
-  <!-- Start Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-    <div class="container">            
-      <a class="navbar-brand" href="index.html"><img src="img/logo.gif" height="30" alt="la vénus"></a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="services.html">service</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="blogs.html">blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">about</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- End Navbar -->
-
-
-
-
-
+<?php get_header(); ?>
   <!-- Start Carousel -->
   <div id="carouselhead" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -168,49 +114,35 @@
   </section>
   <!-- End About-us -->
   <!-- Start Blog -->
+  <?php if(have_posts()) : ?>
   <section id="blog-section">
     <div class="container">
       <h2 class="title-section">lastest <span>Blogs</span></h2>
       <div class="row">
+      <?php while(have_posts()) : the_post(); ?>
         <!-- Start item -->
         <div class="col-lg-4 col-md-6 mb-5 wow slideInLeft">
           <div class="blog">
-            <img src="img/blog1.jpg" alt="">
-            <div>
-              <h2>Headline</h2>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam soluta facilis eaque blanditiis praesentium maiores?</p>
-              <button class="btn"><a href="blog.html">View more</a></button>
+            <?php if(has_post_thumbnail()) : ?>
+              <a href="<?php the_permalink();?>">
+              <?php the_post_thumbnail(); ?>
+              </a>
+            <?php endif; ?>
+          <div>
+              <h2><?php the_title(); ?></h2>
+              <p><?php the_excerpt(); ?></p>
+              <button class="btn"><a href="<?php the_permalink();?>">View more</a></button>
             </div>
           </div>
         </div>
         <!-- End item -->
-        <!-- Start item -->
-        <div class="col-lg-4 col-md-6 mb-5 wow slideInUp">
-          <div class="blog">
-            <img src="img/blog2.jpg" alt="">
-            <div>
-              <h2>Headline</h2>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam soluta facilis eaque blanditiis praesentium maiores?</p>
-              <button class="btn"><a href="blog.html">View more</a></button>
-            </div>
-          </div>
-        </div>
-        <!-- End item -->
-        <!-- Start item -->
-        <div class="col-lg-4 col-md-6 mb-5 mx-auto wow slideInRight">
-          <div class="blog">
-            <img src="img/blog3.jpg" alt="">
-            <div>
-              <h2>Headline</h2>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam soluta facilis eaque blanditiis praesentium maiores?</p>
-              <button class="btn"><a href="blog.html">View more</a></button>
-            </div>
-          </div>
-        </div>
-        <!-- End item -->
+      <?php endwhile; ?>
       </div>
     </div>
   </section>
+  <?php else : ?>
+    <p><?php __('No Posts Found'); ?></p>
+  <?php endif; ?>
   <!-- End Blog -->
   <!-- Start Testimonial -->
   <section id="testimonial-section">
@@ -297,31 +229,4 @@
     </div>
   </section>
   <!-- End Contact -->
-  <!-- Start Footer -->
-  <footer>
-    <div class="container">
-      <img src="img/logo.gif" alt="">
-      <ul class="menu wow slideInUp">
-        <li><a href="index.html">home</a></li>
-        <li><a href="servers.htmk">servers</a></li>
-        <li><a href="blogs.html">blog</a></li>
-        <li><a href="about.html">about</a></li>
-        <li><a href="contact.html">contact</a></li>
-      </ul>
-      <ul class="social-list wow slideInUp">
-        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fab  fa-linkedin-in"></i></a></li>
-      </ul>
-    </div>
-    <div class="copyright"><p>Copyright recived by <span>LAVENUS</span></p></div>
-  </footer>
-  <!-- End Footer -->
-  <script src="js/jquery-3.4.1.slim.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/wow.min.js"></script>
-  <script src="js/main.js"></script>
-</body>
-</html>
+<?php get_footer(); ?>
