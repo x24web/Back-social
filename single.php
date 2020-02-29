@@ -18,23 +18,27 @@
               </ul>
               <h3 class="title wow slideInUp"><?php the_title(); ?></h3>
               <div class="content-post wow zoomIn">
-                  <?php the_excerpt(); ?>
+                  <?php
+                  if ( have_posts() ) {
+                    wp_reset_query();
+                    setup_postdata($post); 
+                    echo esc_attr(htmlentities(the_content()));
+                  }
+                  endif; ?>
               </div>
-              <?php endif; ?>
             </div>
           </div><!-- End details -->
           <!-- Comment Details -->
           <div class="row">
             <div class="col-lg-6">
               <div class="comment-details wow fadeInLeft">
-                <h2 class="title">Recent Comments</h2>
                 <?php comments_template(); ?>
               </div>
             </div>
               <?php if ( comments_open( $post_id ) ) {?>
               <!-- Comment Form -->
               <div class="comment-form col-lg-6 mx-auto wow fadeInRight">
-                <h3 class="title">Your Comment</h3>
+                <h2 class="title">Your Comment</h2>
                 <?php comment_form(array(
                   'title_reply'   => ''
                   )); ?>

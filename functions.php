@@ -1,8 +1,10 @@
 <?php
     require_once('wp-bootstrap-navwalker.php');
+    require_once('wp-bootstrap-paginate.php');
+    require_once('childern-page.php');
 
     // add_theme_support
-    add_theme_support( 'post-thumbnails', array( 'post'));
+    add_theme_support( 'post-thumbnails', array( 'post','page'));
 
     function themename_custom_logo_setup() {
         $defaults = array(
@@ -16,19 +18,26 @@
     }
     add_action( 'after_setup_theme', 'themename_custom_logo_setup' );
 
-
-
-
-
-    // theme support
+    // Navbar support
     function wpb_theme_setup(){
         register_nav_menus(array(
-            'primary' => _('Primary Menu')
+            'primary' => _('Primary Menu'),
+            'social-list' => 'Social Media'
         ));
     }
-
     add_action('after_setup_theme', 'wpb_theme_setup');
 
+    // rebuild the_excerpt
+    function wpdocs_custom_excerpt_length( $length ) {
+        return 37;
+    }
+    add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+    function wpdocs_excerpt_more( $more ) {
+        return '...';
+    }
+    add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+    
 
     add_filter( 'comment_form_default_fields', 'change_fields_comments' );
     function change_fields_comments( $fields ) {
@@ -67,4 +76,15 @@
          $default['must_log_in'] = '';
         return $default;
     }
+
+    function contact_widget() {
+        register_sidebar( array(
+            'name'          => __( 'Contact', 'Contact' ),
+            'before_widget' => '',
+            'after_widget'  => '',
+            'before_title'  => '',
+            'after_title'   => '',
+        ));
+    }
+    add_action( 'widgets_init', 'contact_widget' );
 ?>

@@ -478,7 +478,7 @@ h1,h2,h3,h4,h5,h6{
 /* contact section */
 #contact-section{
     background: url(../img/img3.jpg);
-    background-size: cover;;
+    background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
     .override{
@@ -532,6 +532,8 @@ h1,h2,h3,h4,h5,h6{
         &:focus{
             box-shadow: 0 0 0 0rem rgba(247, 147, 30, 0.25) !important;
             background: transparent;
+            color: $color;
+            border-color: $color;
         }
     }
     input:active{
@@ -553,7 +555,7 @@ h1,h2,h3,h4,h5,h6{
             border-color: $color;
         }
     }
-    button{
+    input[type=submit]{
         background: $color;
         font-weight: 700;
         margin-top: 20px;
@@ -561,10 +563,16 @@ h1,h2,h3,h4,h5,h6{
         border-radius: 50px;
         background: $color;
         padding: 7px 35px 6px 35px; 
+        color: #000;
+        &:hover{
+            color: $color1;
+            background: #fff;
+            border-color: #fff;
+        }
     }
 }
 /* Footer */
-footer{
+footer.footer-web{
     position: relative;
     margin-bottom: 20px;
     padding-top: 50px;
@@ -632,8 +640,6 @@ footer{
 }
 /* Head Page */
 #head-page.style-one{
-    background: url('../img/img4.jpg');
-    background-size: cover;
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -709,8 +715,6 @@ footer{
     }
 }
 #head-page.style-two{
-    background: url('../img/img4.jpg');
-    background-size: cover;
     height: 75vh;
     position: relative;
     overflow: hidden;
@@ -746,7 +750,7 @@ footer{
     }
 }
 /* About */
-#about-page{
+#pages{
     .row{
         padding: 55px 0px 25px;
     }
@@ -759,16 +763,17 @@ footer{
             align-items: center;
             .img{
                 min-width: 220px;
-                height: 220px;
+                min-height: 220px;
+                max-width: 220px;
+                max-height: 220px;
                 border-radius: 50%;
                 overflow: hidden;
                 background: #fff;
-                padding-top: 15px;
                 border: 5px solid $color;
                 img{
-                    display: block;
-                    height: 100%;
-                    margin: auto;
+                    width: 100%;
+                    object-fit: cover;
+                    height: 220px;
                 }
             }
             .info{
@@ -806,7 +811,7 @@ footer{
 #server-page{
     .content{
         padding: 30px 0px 20px;
-        .title{
+        h2{
             font-size: 2.6rem;
             font-weight: 700;
             margin-top: 20px;
@@ -899,7 +904,7 @@ footer{
 }
 /* Blog Page */
 #all-blog{
-    padding: 80px 0px 40px;
+    padding: 80px 0px 0px;
     .item{
         display: flex;
         align-items: center;
@@ -947,13 +952,35 @@ footer{
                         color: #000;
                     }
                 }
-                .like,
-                .share{
-                    font-size: 1.5rem;
-                    color: $color;
-                    margin-right: 15px;
+                // .like,
+                // .share{
+                //     font-size: 1.5rem;
+                //     color: $color;
+                //     margin-right: 15px;
+                // }
+            }
+        }
+    }
+}
+.pagination-blog{
+    display: flex;
+    ul{
+        li{
+            border-radius: 50px;
+            overflow: hidden;
+            height: 38px;
+            width: 38px;
+            font-weight: 700;
+            text-align: center;
+            *{
+                color: $color !important;
+            }
+            &.active{
+                *{
+                    background: $color !important;
+                    border-color: $color !important;
+                    color: #fff !important;
                 }
-
             }
         }
     }
@@ -995,6 +1022,20 @@ footer{
     padding: 12px 0px;
     font-weight: 700;
 }
+.blog-details-section .posts-details .post-details .blog-details .content-post {
+    .aligncenter{
+        margin: auto;
+    }
+    .alignleft{
+        margin-right: auto;
+    }
+    .alignright{
+        margin-left: auto;
+    }
+    .wp-caption-text{
+        display: none;
+    }
+}
 .blog-details-section .posts-details .post-details .blog-details p{
     font-weight: 700;
 }
@@ -1010,40 +1051,51 @@ footer{
 }
 .comment-details{
     margin-bottom: 30px;
+    padding-left: 0;
+    list-style: none;
+    ul{
+        list-style: none;
+    }
     .title{
         color: $color1;
         font-weight: 700;
-        margin-bottom: 25px;
+        margin-bottom: 12px;
         border-bottom: 4px solid $color1;
     }
-    .comments{
-        margin-bottom: 15px;
+    article.comment-body{
+        margin-bottom: 10px;
         border-bottom: 2px solid $color1;
-        h5{
-            color: $color1;
-            font-weight: 700;
-            font-size: 1.8rem;
+        .comment-meta{
+            .comment-author{
+                img,.says{
+                    display: none;                    
+                }
+            }
+            .fn{
+                color: $color1;
+                font-weight: 700;
+                font-size: 1.8rem;
+            }
+            .comment-metadata{
+                display: none;
+            }
         }
-        p{
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0;
-        }
-        .comment-buttons{
-            display: flex;
-            justify-content: flex-end;
+        .reply{
+            margin-top: 5px;
+            margin-bottom: 7px;
+            text-align: right;
             a{
                 text-decoration: none;
-                color: $color1;
-                margin-top: 5px;
-                margin-bottom: 10px;
+                color: #e87a13;
                 font-weight: 700;
                 font-size: 1.1rem;
             }
         }
-        &:last-child{
-            border-bottom: 0px;
-        }
+    }
+    p{
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 0;
     }
 }
 .comment-form{

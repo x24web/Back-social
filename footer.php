@@ -1,21 +1,29 @@
   <!-- Start Footer -->
-  <footer>
+  <footer class="footer-web">
     <div class="container">
-      <img src="img/logo.gif" alt="">
-      <ul class="menu wow slideInUp">
-        <li><a href="index.html">home</a></li>
-        <li><a href="servers.htmk">servers</a></li>
-        <li><a href="blogs.html">blog</a></li>
-        <li><a href="about.html">about</a></li>
-        <li><a href="contact.html">contact</a></li>
-      </ul>
-      <ul class="social-list wow slideInUp">
-        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fab  fa-linkedin-in"></i></a></li>
-      </ul>
+      <?php
+        $custom_logo_id = get_theme_mod( 'custom_logo' );
+        $logo = wp_get_attachment_image_src( $custom_logo_id , '30' );
+        if ( has_custom_logo() ) {
+          echo '<a href="'.home_url().'"><img src="' . $logo[0] . '" alt="' . get_bloginfo( 'name' ) . '"/></a>';
+        }
+      ?>
+      <?php
+        wp_nav_menu( array(
+          'theme_location'    => 'primary',
+          'depth'             => 2,
+          'menu_class'        => 'menu wow slideInUp',
+        ));
+      ?>
+      <?php
+        wp_nav_menu( array(
+          'theme_location'    => 'social-list',
+          'depth'             => 2,
+          'menu_class'        => 'social-list wow slideInUp',
+        ));
+      ?>
     </div>
-    <div class="copyright"><p>Copyright recived by <span>LAVENUS</span></p></div>
+    <div class="copyright"><p>Copyright recived by <span><?php bloginfo('name'); ?></span></p></div>
   </footer>
   <?php wp_footer(); ?>
   <!-- End Footer -->
