@@ -103,73 +103,105 @@ $(function () {
             $('#Price-service .service-pop').append(serverPlan);
         })
     })
-    // $('.plan .head a i').click(function(e){
-    //     e.defaultprevented;
-    //     $(this).toggleClass('fa-arrow-circle-down');
-    //     $(this).parent().parent().parent().next().toggleClass('d-none')
-    //     $(this).toggleClass('fa-arrow-circle-up');
-    //     $(this).parent().parent().parent().next().toggleClass('d-block')
-    // })
+    $('.plan .head a i').click(function(e){
+        e.defaultprevented;
+        $(this).toggleClass('fa-arrow-circle-down');
+        $(this).parent().parent().parent().next().toggleClass('d-none')
+        $(this).toggleClass('fa-arrow-circle-up');
+        $(this).parent().parent().parent().next().toggleClass('d-block')
+    })
+    $('#customer').html(function(){
+        $('#all-services .item > .info').each(function(index){
+            let title;
+            let addPlans;
+            if(index == 0){
+                title = '<a class="btn mx-1 active" data-target="#service-custom'+ index +'"><i class="fas fa-check-circle d-none mr-1"></i>'+$(this).find('.title-price-services').text()+'</a>';
+                addPlans = '<div class="col-12 d-block"><div id="service-custom'+ index +'"><div class="row customer-service"></div><div class="row"><div class="col-md-4"><div class="confirm d-none"><button>Confirm</button></div></div><div class="col-md-4"><div class="submit d-none"><button data-toggle="modal" data-target="#confirm">submit</button></div></div><div class="col-md-4"><div class="total d-none"><p></p></div></div></div>';
+            }else{
+                title = '<a class="btn mx-1" data-target="#service-custom'+ index +'"><i class="fas fa-check-circle d-none mr-1"></i>'+$(this).find('.title-price-services').text()+'</a>';
+                addPlans = '<div class="col-12 d-none"><div id="service-custom'+ index +'"><div class="row customer-service"></div><div class="row"><div class="col-md-4"><div class="confirm d-none"><button>Confirm</button></div></div><div class="col-md-4"><div class="submit d-none"><button data-toggle="modal" data-target="#confirm">submit</button></div></div><div class="col-md-4"><div class="total d-none"><p></p></div></div></div></div></div>';
+            }
+            $('.service-pop > .row').append(addPlans);
+            $(this).find('.custom-big-plans-services').find('.price-big-item').each(function(){
+                let planTitle = $(this).find('.head').find('h3').text();
+                let planDes = $(this).find('.info').find('.text').text();
+                let planPrice = $(this).find('.info').find('.price').text();
+                let Plan = '<div class="col-lg-4 mb-4">'+
+                '<div class="box">'+
+                  '<div>'+
+                  '<h2 class="title">'+ planTitle +'</h2>'+
+                    '<p>'+ planDes +'</p>'+
+                    '</div>'+
+                  '<p class="price"><span>'+ planPrice +'</span></p>'+
+                  '</div>'+
+                '</div>';
+                $('#service-custom'+ index +' .row.customer-service').append(Plan);
+            })
+
+            console.log(index);
+            $('#customer').find('.collapse-service').append(title);
+        })
+    })
     // Service
-    // var singlesevice = $('.modal-content .collapse-service a');
-    // var dataTarget;
-    // var elservice;
-    // singlesevice.click(function(e){
-    //     if($(this).hasClass('active')){
-    //     }else{
-    //         $(this).addClass('active');
-    //         $(this).siblings().removeClass('active')
-    //         dataTarget = $(this).data("target");
-    //         elservice = $(dataTarget).parent().addClass('d-block').removeClass('d-none');
-    //         elservice.siblings().addClass('d-none').removeClass('d-block');
-    //         }
-    // })
+    var singlesevice = $('.modal-content .collapse-service a');
+    var dataTarget;
+    var elservice;
+    singlesevice.click(function(e){
+        if($(this).hasClass('active')){
+        }else{
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active')
+            dataTarget = $(this).data("target");
+            elservice = $(dataTarget).parent().addClass('d-block').removeClass('d-none');
+            elservice.siblings().addClass('d-none').removeClass('d-block');
+            }
+    })
     // customer service 
-    // var customer = $('.customer-service .box');
-    // var allService = [];
-    // var nameService,
-    //     namePlan,
-    //     Price;
-    // var textInfo = "";
-    // customer.click(function(e){
-    //     if(!$(this).hasClass('active')){
-    //         $(this).addClass('active');
-    //         $(this).parent().siblings().children().removeClass('active');
-    //         $(this).parent().parent().siblings().find('.confirm').addClass('d-block');
-    //     }
-    // })
-    // $('.service-pop .confirm').click(function(e){
-    //     if($('.collapse-service .active i').hasClass('d-none')){
-    //         $('.collapse-service .active i').removeClass('d-none').addClass('d-inline-block');
-    //         nameService = $('.collapse-service .active').text().trim();
-    //         namePlan = $('.service-pop .col-12.d-block .box.active .title').text();
-    //         Price = $('.service-pop .col-12.d-block .box.active .price span').text();
-    //         var tempservice = [];
-    //         tempservice.push(nameService)
-    //         tempservice.push(namePlan)
-    //         tempservice.push(Price)
-    //         allService.push(tempservice)
-    //         var temptext = `<h3 class="text-center">${nameService}: ${namePlan} = ${Price}</h3>\n`;
-    //         textInfo += temptext;
-    //         $('#confirm .container')[0].innerHTML = textInfo;
-    //     }
-    //     if($('.collapse-service i.d-inline-block').length > 1){
-    //         $('.service-pop .submit').addClass('d-block').removeClass('d-none');
-    //         let total = 0;
-    //         allService.forEach(x => {
-    //             let z = parseFloat(x[2]);
-    //             total += z;
-    //         });
-    //         $('.service-pop .total').addClass('d-block').removeClass('d-none');
-    //         let lentotal = $('.service-pop .total p').length;
-    //         for(let i = 0; i < lentotal; i++){
-    //             $('.service-pop .total p')[i].innerText = total;
-    //         }
-    //         $('#confirm .container')[0].innerHTML += `<h3 class="text-center">Total: ${total}</h3>`;
-    //     }
-    // })
-    // $('.service button').click(function(e){
-    //    let x = $(this).siblings().find('span').text()
-    //    $('#confirm .container')[0].innerHTML = `<h3 class="text-center">Price: ${x}</h3>`;
-    // })
+    var customer = $('.customer-service .box');
+    var allService = [];
+    var nameService,
+        namePlan,
+        Price;
+    var textInfo = "";
+    customer.click(function(e){
+        if(!$(this).hasClass('active')){
+            $(this).addClass('active');
+            $(this).parent().siblings().children().removeClass('active');
+            $(this).parent().parent().siblings().find('.confirm').addClass('d-block');
+        }
+    })
+    $('.service-pop .confirm').click(function(e){
+        if($('.collapse-service .active i').hasClass('d-none')){
+            $('.collapse-service .active i').removeClass('d-none').addClass('d-inline-block');
+            nameService = $('.collapse-service .active').text().trim();
+            namePlan = $('.service-pop .col-12.d-block .box.active .title').text();
+            Price = $('.service-pop .col-12.d-block .box.active .price span').text();
+            var tempservice = [];
+            tempservice.push(nameService)
+            tempservice.push(namePlan)
+            tempservice.push(Price)
+            allService.push(tempservice)
+            var temptext = `<h3 class="text-center">${nameService}: ${namePlan} = ${Price}</h3>\n`;
+            textInfo += temptext;
+            $('#confirm  .container').html(textInfo);
+        }
+        if($('.collapse-service i.d-inline-block').length > 1){
+            $('.service-pop .submit').addClass('d-block').removeClass('d-none');
+            let total = 0;
+            allService.forEach(x => {
+                let z = parseFloat(x[2]);
+                total += z;
+            });
+            $('.service-pop .total').addClass('d-block').removeClass('d-none');
+            let lentotal = $('.service-pop .total p').length;
+            for(let i = 0; i < lentotal; i++){
+                $('.service-pop .total p')[i].innerText = total;
+            }
+            $('#confirm .container')[0].innerHTML += `<h3 class="text-center">Total: ${total}</h3>`;
+        }
+    })
+    $('.service button').click(function(e){
+       let x = $(this).siblings().find('span').text()
+       $('#confirm .container')[0].innerHTML = `<h3 class="text-center">Price: ${x}</h3>`;
+    })
 })

@@ -67,6 +67,65 @@ function show_childpages_shortcode() {
         </div>
         </div>
     </div>
+
+    <div class="modal fade bd-example-modal-lg" id="customer">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Customer</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="service-pop">
+            <h2>chose one or more of our services</h2>
+            <p class="collapse-service">
+            </p>
+            <div class="row">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="confirm">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="Price-1">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+          </div>
+          <div class="contact-form pt-1">
+            <h2 class="title-section pb-1">Your <span>info</span></h2>
+            <form action="">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Phone">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="3" placeholder="Your Message..."></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn d-block mx-auto">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <?php
     return ob_get_clean();
 }

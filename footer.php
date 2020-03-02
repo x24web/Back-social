@@ -33,5 +33,6 @@
   <script src="<?php bloginfo('template_url'); ?>/js/owl.carousel.min.js"></script>
   <script src="<?php bloginfo('template_url'); ?>/js/wow.min.js"></script>
   <script src="<?php bloginfo('template_url'); ?>/js/main.js"></script>
+  <script src="//code.tidio.co/xlrt4qvwj3jjt8d248m6prajopvkalnh.js" async></script>
 </body>
 </html>

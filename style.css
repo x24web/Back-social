@@ -839,6 +839,7 @@ footer.footer-web .copyright p span {
   border-radius: 0px 0px 5px 5px;
 }
 .plan .item .info .text {
+  width: 100%;
   margin-bottom: 0;
   font-weight: 800;
   padding-right: 25px;
