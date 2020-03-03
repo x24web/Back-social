@@ -5,7 +5,9 @@ function show_childpages_shortcode() {
         $current_page_id = get_the_ID();
         $child_pages = get_pages( array( 
             'child_of' => $current_page_id,  
-        ) );
+            'sort_column' => 'post_date',
+            'sort_order' => 'DESC'
+        ));
         if ($child_pages) {
             echo '<section id="all-services">
             <div class="container">
@@ -104,23 +106,7 @@ function show_childpages_shortcode() {
           </div>
           <div class="contact-form pt-1">
             <h2 class="title-section pb-1">Your <span>info</span></h2>
-            <form action="">
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Name">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Phone">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" rows="3" placeholder="Your Message..."></textarea>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn d-block mx-auto">Submit</button>
-              </div>
-            </form>
+            <?php echo do_shortcode( '[contact-form-7 id="297" title="Big Custom Order"]' ); ?>
           </div>
         </div>
       </div>

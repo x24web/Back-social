@@ -23,7 +23,7 @@
         ));
       ?>
     </div>
-    <div class="copyright"><p>Copyright recived by <span><?php bloginfo('name'); ?></span></p></div>
+      <div class="copyright"><p><?php if(!(get_language_attributes() == 'lang="ar"')){ ?>Copyright recived by <span> <?php bloginfo('name'); ?> </span> <?php }else{ ?> <span> <?php bloginfo('name'); ?> </span> جميع الحقوق محفوظة لـ <?php } ?></p></div>
   </footer>
   <?php wp_footer(); ?>
   <!-- End Footer -->
@@ -33,6 +33,10 @@
   <script src="<?php bloginfo('template_url'); ?>/js/owl.carousel.min.js"></script>
   <script src="<?php bloginfo('template_url'); ?>/js/wow.min.js"></script>
   <script src="<?php bloginfo('template_url'); ?>/js/main.js"></script>
-  <script src="//code.tidio.co/xlrt4qvwj3jjt8d248m6prajopvkalnh.js" async></script>
+  <?php if(get_language_attributes() == 'lang="ar"'){?>
+    <script src="<?php bloginfo('template_url'); ?>/js/main-rtl.js"></script> 
+  <?php }else{?>
+    <script src="//code.tidio.co/xlrt4qvwj3jjt8d248m6prajopvkalnh.js" async></script>
+  <?php }?>
 </body>
 </html>

@@ -1,0 +1,106 @@
+@media (min-width: 992px) { 
+    .navbar.navbar-expand-lg{
+        .container{
+            flex-direction: row-reverse;
+        }
+        #navbarSupportedContent > ul{
+            flex-direction: row-reverse;
+            margin-right: 15px;
+        }
+    }
+}
+@media (max-width: 991.98px) { 
+    .navbar.navbar-expand-lg{
+        .container{
+            flex-direction: row-reverse;
+        }
+        #navbarSupportedContent > ul{
+            li{
+                text-align: right;
+            }
+        }
+    }
+}
+.social-list{
+    flex-direction: row-reverse;
+}
+#carouselhead{
+    .carousel-item{
+        .carousel-caption{
+            h1,h4{
+                text-align: right !important;
+            }
+        }
+    }
+}
+#about-section{
+    .textwidget{
+        & > .row{
+            flex-direction: row-reverse;
+        }
+    }
+    .shape{
+        margin-left: auto;
+        border-right: 0px solid #f7931e;
+        border-left: 10px solid #f7931e;
+    }
+}
+#contact-section > .override > .container .row{
+    flex-direction: row-reverse;
+}
+.contact-form{
+    input,textarea{
+        text-align: right;
+    }
+}
+footer.footer-web .menu{
+    flex-direction: row-reverse;
+}
+#all-blog .item{
+    flex-direction: row-reverse;
+    .img{
+        margin-right: 0px;
+        margin-left: 35px;
+    }
+    .info{
+        h2,p{
+            text-align: right;
+        }
+        .control{
+            justify-content: flex-end;
+        }
+    }
+}
+#blog-section .container > .row{
+    flex-direction: row-reverse;
+}
+#what-we-do-section .container > .row{
+    flex-direction: row-reverse;
+}
+.customer-img .container > .row{
+    flex-direction: row-reverse;
+}
+.customer-img img{
+    margin-left: 0;
+    margin-right: auto;
+}
+.customer-img .content{
+    margin-left: auto;
+}
+#all-services{
+    .item .info{
+        .control{
+            flex-direction: row-reverse;
+        }
+        >p{
+            text-align: right;
+        }
+    }
+}
+#all-services .item .info .control{
+    justify-content: flex-start;
+}
+
+#all-services .col-lg-12:nth-child(odd) .item .control{
+    justify-content: flex-end;
+}

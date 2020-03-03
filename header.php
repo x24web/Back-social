@@ -4,7 +4,7 @@
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="<?php bloginfo('description'); ?>"/>
-  <title><?php bloginfo('name');?> | <?php is_front_page() ? bloginfo('description') : wp_title('') ?></title>
+  <title><?php wp_title('');?> <?php if(is_front_page()){  bloginfo('description'); } ?></title>
   <link href="https://fonts.googleapis.com/css?family=Almarai:400,800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet">
   <link href="<?php bloginfo('template_url'); ?>/css/owl.carousel.min.css" rel="stylesheet">
@@ -12,7 +12,9 @@
   <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?php bloginfo('template_url'); ?>/css/animate.css" rel="stylesheet">
   <link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet">
-  <link href="<?php bloginfo('template_url'); ?>/css/rtl.css" rel="stylesheet">
+  <?php if(get_language_attributes() == 'lang="ar"'):?>
+    <link href="<?php bloginfo('template_url'); ?>/css/rtl.css" rel="stylesheet">  
+  <?php endif?>
   <?php wp_head(); ?>
 </head>
 <body>

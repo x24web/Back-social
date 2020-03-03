@@ -3,7 +3,7 @@
     <div class="override d-flex">
       <div class="text container">
         <h1 class="text-capitalize"><span><?php wp_title(''); ?></span></h1>
-        <h2>improve <span>Business</span></h2>
+        <h2 class="two-color-swap"><?php echo get_post_meta(get_queried_object_id(), 'sub-title', true); ?></h2>
       </div>
       <div class="footer-head-page">
         <img class="wave" src="<?php bloginfo('template_url'); ?>/img/Path 1.svg" alt="">

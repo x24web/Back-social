@@ -76,15 +76,41 @@
          $default['must_log_in'] = '';
         return $default;
     }
-
-    function contact_widget() {
+    
+    function load_widgets() {
         register_sidebar( array(
-            'name'          => __( 'Contact', 'Contact' ),
+            'name'          => __( 'Slider', 'slider' ),
             'before_widget' => '',
             'after_widget'  => '',
             'before_title'  => '',
             'after_title'   => '',
         ));
+        register_sidebar( array(
+            'name'          => __( 'What We Do', 'what-we-do' ),
+            'before_widget' => '',
+            'after_widget'  => '',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        ));
+        register_sidebar( array(
+            'name'          => __( 'Testimonial', 'Testimonial'),
+            'before_widget' => '',
+            'after_widget'  => '',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        ));
+        register_sidebar( array(
+            'name'          => __( 'Contact', 'Contact'),
+            'before_widget' => '',
+            'after_widget'  => '',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        ));
     }
-    add_action( 'widgets_init', 'contact_widget' );
+    add_action( 'widgets_init', 'load_widgets');
+    function get_page_id($page_name){
+        global $wpdb;
+        $page_name = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$page_name."'");
+        return $page_name;
+    }
 ?>

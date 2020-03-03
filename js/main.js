@@ -17,40 +17,32 @@ $(function () {
             Nav.removeClass("scroll");
         }
     })
-    $('.carousel').carousel({
-        interval: 5000,
-    })
     for(let i = 0; i < list.length; i++){
+        if(list[i].textContent.trim() == ''){
+            list[i].remove();
+            continue;
+        }
         var x = `<li><span>${i + 1}</span><p>${list[i].textContent}</p></li>`;
         $(x).insertAfter(list[i]);
         list[i].remove();
     }
-    $('.owl-carousel').owlCarousel({
-        items: 1,
-        loop:true,
-        autoplay:true,
-        autoplayTimeout: 3400,
-        autoplayHoverPause:true,
-        nav:true
+    $('#testimonial-section').html(function(){
+        $(this).find('.textwidget').find('.item').each(function(){
+            $('#testimonial-section .owl-carousel').append($(this).clone());
+        })
+        $('#testimonial-section .textwidget').remove();
+        $('#testimonial-section .title-section').text($('#testimonial-section .widget-title').text());
+        $('#testimonial-section .widget-title').remove();
+        $('.owl-carousel').owlCarousel({
+            items: 1,
+            loop:true,
+            autoplay:true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause:true,
+            nav:true
+        });
     })
     new WOW().init();
-    $('#head-page h2').html(function(){
-        var text= $(this).text().trim().split(" ");
-        var textnew = [],
-            start = text.length;
-        if(text.length > 1){
-            for(let i = start - 1; i > start/2 -1 ; i--){
-                textnew.unshift(text[i]);
-            }
-            for(let i = start - 1; i > start/2 -1 ; i--){
-                text.pop();
-            }
-        }else if(text.length == 1){
-            textnew.unshift(text[0]);
-            return  (text.length > 0 ? "<span>" + textnew.join(' ') + "</span>" : textnew.join(' '));
-        }
-        return text.join(" ") + (text.length > 0 ? " <span>" + textnew.join(' ') + "</span>" : textnew.join(' '));
-    });
     $('#head-page').html(function(){
         var x = $('#head-page .attachment-full.size-full.wp-post-image');
         $('#head-page').css({
@@ -59,6 +51,40 @@ $(function () {
         });
         x.remove();
     });
+    $('#about-section .widget-title').html(function(){
+        $('#about-section .title-section').text($(this).text());
+        var x = $('#about-section .textwidget > p img');
+        $('#about-section').css({
+            "background":'url(' + x.attr('src') + ')',
+            "background-size":'cover'
+        });
+        x.parent().remove();
+        $(this).remove();
+    });
+    $('#contact-section').html(function(){
+        var x = $(this).parent().find('>p').find('img');
+        $('#contact-section').css({
+            "background":'url(' + x.attr('src') + ')',
+            "background-size":'cover'
+        });
+        x.parent().remove();
+    })
+    $('#carouselhead').html(function(){
+        $('#carouselhead .carousel-inner').append($('#carouselhead .textwidget .carousel-item').clone());
+        $('#carouselhead .carousel-inner .carousel-item:first-child').addClass('active');
+        $('#carouselhead > .textwidget').remove();
+        let x = $('#carouselhead .carousel-inner .carousel-item').length;
+        for(let i = 1; i < x ; i++){
+        $('#carouselhead .carousel-indicators').append('<li data-target="#carouselhead" data-slide-to="' + i + '"></li>');}
+    });
+    $('#carouselhead .carousel-item .carousel-caption button a').html(function(){
+        if($(this).text().trim() == ""){
+            $(this).parent().remove();
+        }
+    })
+    $('.carousel').carousel({
+        interval: 5000,
+    })
     if($('#pages .member').length>0){
         $('#pages .content').prepend("<div class='row'></div>");
     }
@@ -77,6 +103,10 @@ $(function () {
         $('#server-page .plan').append($(this).clone());
         $(this).remove();
     })
+    $('#server-page .content > .custom').html(function(){
+        $('#server-page').append($(this).clone());
+        $(this).remove();
+    })
     $('#all-services .item .info .control .price').click(function(){
         let x = $(this).parent().parent();
         $('#Price-service .modal-title').text(x.find('.title-price-services').text());
@@ -86,6 +116,12 @@ $(function () {
             let title = $(this).find('.head').find('h3').text();
             let des = $(this).find('.info').find('.text').text();
             let price = $(this).find('.info').find('.buy').find('.price').text();
+            let textar;
+            if($('html')[0].lang == "ar"){
+                textar = "شراء الان";
+            }else{
+                textar = "Buy Now";
+            }
             let serverPlan = '<div class="service">' +
                 '<div class="row d-flex align-items-center mt-3">'+
                 '<div class="col-lg-3">'+
@@ -96,7 +132,7 @@ $(function () {
                 '</div>'+
                 '<div class="col-lg-3">'+
                 '<h3>'+ price +'</h3>'+
-                '<button data-toggle="modal" data-target="#confirm">Buy now</button>'+
+                '<button data-toggle="modal" data-target="#confirm">'+ textar +'</button>'+
                 '</div>'+
                 '</div>'+
                 '</div>';
@@ -137,8 +173,6 @@ $(function () {
                 '</div>';
                 $('#service-custom'+ index +' .row.customer-service').append(Plan);
             })
-
-            console.log(index);
             $('#customer').find('.collapse-service').append(title);
         })
     })
@@ -184,6 +218,7 @@ $(function () {
             var temptext = `<h3 class="text-center">${nameService}: ${namePlan} = ${Price}</h3>\n`;
             textInfo += temptext;
             $('#confirm  .container').html(textInfo);
+            $('#confirm  #order').val(textInfo.replace(/(<([^>]+)>)/ig,""));
         }
         if($('.collapse-service i.d-inline-block').length > 1){
             $('.service-pop .submit').addClass('d-block').removeClass('d-none');
@@ -197,11 +232,54 @@ $(function () {
             for(let i = 0; i < lentotal; i++){
                 $('.service-pop .total p')[i].innerText = total;
             }
-            $('#confirm .container')[0].innerHTML += `<h3 class="text-center">Total: ${total}</h3>`;
+            let totalText ='<h3 class="text-center">Total: ' + total + '</h3>';
+            $('#confirm .container').append(totalText);
+            $('#confirm  #order').val($('#confirm  #order').val() + totalText.replace(/(<([^>]+)>)/ig,""));
         }
     })
     $('.service button').click(function(e){
-       let x = $(this).siblings().find('span').text()
+       let x = $(this).siblings().find('span').text();
        $('#confirm .container')[0].innerHTML = `<h3 class="text-center">Price: ${x}</h3>`;
+    });
+    $('#custom-one').html(function(){
+        $('#custom-one .modal-title').text($('#head-page .border-title.two-color-swap').text());
+        $('#custom-one .modal-body .row').append($('#server-page .item-small-plan').each(function(){
+            $(this).clone();
+            if($(this).next().html() == ""){
+                $(this).next().remove();
+            }
+        }))
     })
+    $('#custom-one .modal-body .item-small-plan .box').click(function(){
+        $(this).toggleClass('active');
+        if($('#custom-one .modal-body .item-small-plan .box.active').length > 0){
+            $('#custom-one .submit.d-none').addClass('d-block').removeClass('d-none');
+        }else{
+            $('#custom-one .submit.d-block').addClass('d-none').removeClass('d-block');
+        }
+    })
+    $('#custom-one .submit button').click(function(){
+        let text = "";
+        $('#custom-one .modal-body .item-small-plan .box.active').each(function(){
+            text += $(this).text();
+        });
+        $('#confirm #small-order').val(text);
+    })
+    $('.two-color-swap').html(function(){
+        var text= $(this).text().trim().split(" ");
+        var textnew = [],
+            start = text.length;
+        if(text.length > 1){
+            for(let i = start - 1; i > start/2 -1 ; i--){
+                textnew.unshift(text[i]);
+            }
+            for(let i = start - 1; i > start/2 -1 ; i--){
+                text.pop();
+            }
+        }else if(text.length == 1){
+            textnew.unshift(text[0]);
+            return  (text.length > 0 ? "<span>" + textnew.join(' ') + "</span>" : textnew.join(' '));
+        }
+        return text.join(" ") + (text.length > 0 ? " <span>" + textnew.join(' ') + "</span>" : textnew.join(' '));
+    });
 })

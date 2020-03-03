@@ -54,6 +54,28 @@ h1,h2,h3,h4,h5,h6{
             color: #fff;
         }
     }
+    .item-small-plan{
+        .box{
+            display: flex;
+            justify-content: space-between;
+            height: 90px;
+            padding: 0px 10px;
+            align-items: center;
+            border: 3px solid #2e2e2e;
+            margin-bottom: 10px;
+            cursor: pointer;
+            h2{
+                margin-bottom: 0px;
+                font-weight: 700;
+                &:last-child{
+                    color: $color1;
+                }
+            }
+            &.active{
+                border: 3px solid $color1;
+            }
+        }
+    }
     .service-pop{
         &>h2{
             font-size: 2.7rem;
@@ -234,6 +256,7 @@ h1,h2,h3,h4,h5,h6{
 /* carousel */
 #carouselhead{
     .carousel-indicators{
+        margin-bottom: 60px;
         li.active{
             background-color: $color;
         }
@@ -252,19 +275,22 @@ h1,h2,h3,h4,h5,h6{
             object-fit: cover;
         }
         .carousel-caption{
+            margin-bottom: 40px;
             h1{
                 line-height: 0.9;
 
             }
             h1,h4 span{
                 font-weight: 700 !important;
-
             }
             button{
                 margin-top: 12vh;
                 margin-bottom: 25px;
                 font-weight: 800;
-
+                a{
+                    color: #212529;
+                    text-decoration: none;;
+                }
             }
             span{
                 color: $color;
@@ -328,6 +354,8 @@ h1,h2,h3,h4,h5,h6{
         li{
             display: flex;
             align-items: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
             span{
                 display: flex;
                 align-items: center;
@@ -426,14 +454,17 @@ h1,h2,h3,h4,h5,h6{
     .item{
         text-align: center;
         .img{
-            padding-top: 5px;
             margin: auto;
             overflow: hidden;
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             background: #fff;
             border-radius: 50px;
             border: 4px solid $color;
+            img{
+                height: 100%;
+                object-fit: cover;
+            }
         }
         h4{
             font-size: 32px;
@@ -457,12 +488,12 @@ h1,h2,h3,h4,h5,h6{
     }
     .owl-next{
         position: absolute;
-        top: 0;
+        top: 40%;
         right: 0;
     }
     .owl-prev{
         position: absolute;
-        top: 0;
+        top: 40%;
         left: 0;
     }
     .owl-theme .owl-dots .owl-dot span{
@@ -473,6 +504,9 @@ h1,h2,h3,h4,h5,h6{
     .owl-theme .owl-dots .owl-dot.active span
     ,.owl-theme .owl-dots .owl-dot:hover span{
         background: $color;
+    }
+    .owl-theme .owl-nav [class*=owl-]:hover{
+        background: transparent !important;
     }
 }
 /* contact section */
@@ -967,6 +1001,7 @@ footer.footer-web{
     display: flex;
     ul{
         li{
+            cursor: pointer;
             border-radius: 50px;
             overflow: hidden;
             height: 38px;
